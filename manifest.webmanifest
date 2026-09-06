@@ -1,0 +1,9 @@
+{
+  "name": "C&J Aviation Bench Stock",
+  "short_name": "Bench Stock",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b2545",
+  "theme_color": "#0b2545",
+  "icons": [{ "src": "LOGO.png", "sizes": "448x448", "type": "image/png", "purpose": "any" }]
+}

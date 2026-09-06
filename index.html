@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b2545">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bench Stock">
+<meta name="robots" content="noindex,nofollow">
+<title>C&amp;J Aviation — Bench Stock</title>
+<link rel="icon" href="LOGO.png">
+<link rel="apple-touch-icon" href="LOGO.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- PIN gate. Shown until a good PIN has been entered on this device. The PIN
+     itself lives in Script Properties on the Apps Script side, never in this
+     repo — the browser only ever holds the token it was handed back. -->
+<div id="gate">
+  <div class="gbox">
+    <div class="glogo"><img src="LOGO.png" alt="C&amp;J Aviation"></div>
+    <h1>C&amp;J Aviation Bench Stock</h1>
+    <div class="gsub">Enter the shop PIN to use this device</div>
+    <input id="gpin" type="password" inputmode="numeric" autocomplete="off"
+           maxlength="12" placeholder="••••" enterkeyhint="go">
+    <button id="gbtn" onclick="submitPin()">Unlock</button>
+    <div class="gerr" id="gerr"></div>
+    <div class="gnote">You only do this once per phone. Tap Share &rarr; Add to Home Screen
+      to keep it a tap away.</div>
+  </div>
+</div>
+
+<div class="app" id="appwrap" hidden>
+  <header>
+    <div class="hrow">
+      <div class="logo" id="logo"><img src="LOGO.png" alt="C&amp;J Aviation"></div>
+      <div>
+        <div class="brand">C&amp;J Aviation - Bench Stock</div>
+        <div class="sub" id="sub">Loading…</div>
+      </div>
+    </div>
+    <div class="tabs">
+      <button id="tab-parts"   class="on" onclick="switchTab('parts')">Parts</button>
+      <button id="tab-reorder"          onclick="switchTab('reorder')">Reorder</button>
+      <button id="tab-labels"           onclick="switchTab('labels')">Labels</button>
+      <button id="tab-year"             onclick="switchTab('year')">Year-end</button>
+      <button id="tab-manage"           onclick="switchTab('manage')">Manage</button>
+    </div>
+  </header>
+
+  <div class="searchwrap" id="searchwrap">
+    <div class="searchbar">
+      <input id="q" type="text" inputmode="search" placeholder="Search bin, part # or description">
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+
+  <div class="wrap" id="view"><div class="spin">Loading inventory…</div></div>
+</div>
+
+<!-- Full-size photo viewer: opened by tapping a part's thumbnail -->
+<div id="photoModal">
+  <div class="pmwrap">
+    <div class="pmtitle" id="pmTitle"></div>
+    <div class="pmsub" id="pmSub"></div>
+    <div class="pmimg" id="pmImg"></div>
+    <div class="pmbtns" id="pmBtns">
+      <button class="pmreplace" onclick="replacePhoto()">Replace photo</button>
+      <button class="pmdelete" onclick="askDeletePhoto()">Delete photo</button>
+    </div>
+    <div id="pmConfirmSlot"></div>
+    <button class="pmclose" onclick="closePhoto()">Close</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="vendor/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
