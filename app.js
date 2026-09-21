@@ -226,7 +226,8 @@ function buildCard(p, idx){
            ? '<div class="common">ON ORDER' + (p.onOrder > 0 ? ' ' + fmt(p.onOrder) : '')
              + (p.poNum ? ' · PO ' + esc(p.poNum) : '') + '</div>'
            : '')
-  +      (p.commonPN && p.commonPN!==p.sprucePN ? '<div class="common">Common P/N: ' + esc(p.commonPN) + '</div>' : '') + '</div>'
+  +      (p.commonPN && p.commonPN!==p.sprucePN ? '<div class="common">Common P/N: ' + esc(p.commonPN) + '</div>' : '')
+  +      '<div class="common wdesc">' + esc(p.desc||'') + '</div></div>'   /* wide layout only; .desc below is the phone one */
   + '    <div class="oh' + (low?' low':'') + '"><span class="n">' + fmt(p.onHand) + '</span><small>ON HAND'
   +        (p.reorderPt!=null?' · RO '+fmt(p.reorderPt):'') + '</small></div>'
   + '  </div>'

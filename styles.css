@@ -189,6 +189,38 @@ header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;pa
 .label .x{position:absolute;top:4px;right:6px;background:none;border:none;color:#c33;font-size:16px;
   font-weight:700;padding:2px 6px}
 
+/* ---- Wide layout (admin site frame / desktop, ≥900px) -------------------
+   Phones keep the card column above. Here each part is one full-width row:
+   thumb · part number + bin + description · on hand, then every control on
+   one line beneath it. Same buttons, same handlers — only CSS and one extra
+   description span (.wdesc) that is hidden on phones. */
+.wdesc{display:none}
+@media (min-width:900px){
+  .app{max-width:none}
+  header{margin:0}
+  .wrap{padding:6px 18px 24px}
+  .card{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:10px 14px;margin-bottom:8px}
+  .card .chead{flex:1 1 100%;align-items:center}
+  .thumb{width:44px;height:44px}
+  .pn{font-size:16px}
+  .wdesc{display:block;color:#33414f}
+  .desc{display:none}
+  .oh{padding:4px 10px;min-width:72px}
+  .oh .n{font-size:22px}
+  .seg{margin:0;flex:0 0 auto}
+  .seg button{flex:0 0 auto;padding:7px 12px;font-size:13px}
+  .stepper{margin:0;gap:6px;flex:0 0 auto}
+  .stepper button{width:34px;height:34px;font-size:18px}
+  .stepper input{width:48px;font-size:18px}
+  .notes{width:auto;flex:1 1 180px;min-width:160px;margin:0;padding:8px 10px;font-size:13.5px}
+  .submit{width:auto;flex:0 0 auto;margin:0;padding:9px 14px;font-size:14px;white-space:nowrap}
+  .reorder{display:inline-block;margin:0;flex:0 0 auto;font-size:13px;white-space:nowrap}
+  .cardfoot{margin:0;padding:0;border:none;flex:0 0 auto;gap:2px}
+  .cardfoot:has(.editbox),.cardfoot:has(.confirm){flex:1 1 100%}
+  .editbox,.confirm{margin:0}
+  .more{max-width:420px;margin:6px auto;display:block}
+}
+
 @media print{
   @page{margin:0.4in}
   header,.searchwrap,.lblbar,.noprint,.label .x,.toast{display:none !important}
