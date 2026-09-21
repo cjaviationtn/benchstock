@@ -10,6 +10,12 @@
    API_REQUIRE_PIN switch. */
 var REQUIRE_PIN = false;
 
+/* Bench Stock now lives inside the admin site (cjaviationtn.org, Bench Stock tab), which
+   sits behind Google sign-in. Opened on its own, this page just sends you there. */
+if (window.top === window.self && !/[?&]standalone=1/.test(location.search)) {
+  location.replace('https://cjaviationtn.org/#bench');
+}
+
 var TOKEN = '';
 try { TOKEN = localStorage.getItem('cj_bs_token') || ''; } catch(e){}
 

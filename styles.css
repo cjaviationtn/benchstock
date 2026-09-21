@@ -189,6 +189,11 @@ header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;pa
 .label .x{position:absolute;top:4px;right:6px;background:none;border:none;color:#c33;font-size:16px;
   font-weight:700;padding:2px 6px}
 
+/* Inside the admin site the logo/title row is redundant — the tab already says Bench Stock. */
+.hrow{display:none}
+.tabs{margin-top:0}
+header{padding-top:10px}
+
 /* ---- Wide layout (admin site frame / desktop, ≥900px) -------------------
    Phones keep the card column above. Here each part is one full-width row:
    thumb · part number + bin + description · on hand, then every control on
