@@ -5,6 +5,11 @@
    plus a PIN gate and the QR label generator folded in as a tab.
    ===================================================================== */
 
+/* Joel dropped the shop PIN (Sep 2026): Bench Stock is used from the admin site, which sits
+   behind Google sign-in. Set this to true to bring the PIN gate back — Api.gs has the matching
+   API_REQUIRE_PIN switch. */
+var REQUIRE_PIN = false;
+
 var TOKEN = '';
 try { TOKEN = localStorage.getItem('cj_bs_token') || ''; } catch(e){}
 
@@ -83,6 +88,7 @@ function submitPin(){
 }
 
 function lockOut(){
+  if (!REQUIRE_PIN) return;   // gate is off; a stray AUTH reply must not strand the user
   TOKEN = '';
   try { localStorage.removeItem('cj_bs_token'); } catch(e){}
   var g = gateEl('gate');
@@ -329,7 +335,7 @@ function renderManage(){
     + '  <div class="psub">The site itself always loads fresh from the web — there is no pinned'
     + '   deployment to go stale. This shows which script version is answering.</div>'
     + '  <div id="verbox" style="font-size:13.5px">Checking…</div>'
-    + '  <button class="btn-danger" style="margin-top:12px" onclick="signOutDevice()">Sign this device out</button>'
+    + (REQUIRE_PIN ? '  <button class="btn-danger" style="margin-top:12px" onclick="signOutDevice()">Sign this device out</button>' : '')
     + '</div>';
   showVersions();
 }
@@ -1010,6 +1016,6 @@ function exportYearPdf(){
   toastEl = document.getElementById('toast');
   var pin = document.getElementById('gpin');
   pin.addEventListener('keydown', function(e){ if (e.key === 'Enter') submitPin(); });
-  if (TOKEN){ openApp(); }
+  if (TOKEN || !REQUIRE_PIN){ openApp(); }
   else { setTimeout(function(){ pin.focus(); }, 150); }
 })();
