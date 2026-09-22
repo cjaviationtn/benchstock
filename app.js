@@ -13,7 +13,8 @@ var REQUIRE_PIN = false;
 /* Bench Stock now lives inside the admin site (cjaviationtn.org, Bench Stock tab), which
    sits behind Google sign-in. Opened on its own, this page just sends you there. */
 if (window.top === window.self && !/[?&]standalone=1/.test(location.search)) {
-  location.replace('https://cjaviationtn.org/#bench');
+  var mp = /[?&]p=([^&]*)/.exec(location.search);
+  location.replace('https://cjaviationtn.org/#bench' + (mp ? '?p=' + mp[1] : ''));
 }
 
 var TOKEN = '';
